@@ -7,9 +7,10 @@ using namespace std;
 class MyStack
 {
 public:
+    int i;
     int top;
     int capacity;
-    int arr[];
+    int arr[]; // flexible member should be last always
 
     MyStack(int size)
     {
@@ -22,15 +23,16 @@ public:
     {
         if (top + 1 < capacity)
         {
-            cout << element << endl;
-            // arr[++top] = element;
+            arr[++top] = element;
 
-            // cout << endl;
-            // cout << "Adding element " << element;
-            // for (int i = 0; i <= top; i++)
-            // {
-            //     cout << arr[i] << " ";
-            // }
+            cout << endl;
+            cout << "Adding element " << element << " into stack " << endl;
+
+            cout << " Stack is : ";
+            for (i = 0; i <= top; i++)
+            {
+                cout << arr[i] << " ";
+            }
         }
         else
         {
@@ -50,7 +52,7 @@ public:
         {
             int ele = arr[top--];
             cout << endl;
-            cout << "Popping element " << ele;
+            cout << "Popping out element = " << ele << " From stack ";
 
             if (top == -1)
             {
@@ -59,6 +61,7 @@ public:
             else
             {
 
+                cout << " \n Stack becomes after pop " << endl;
                 for (int i = 0; i <= top; i++)
                 {
                     cout << arr[i] << " ";
@@ -74,20 +77,14 @@ int main()
     s1.push(0);
     s1.push(5);
     s1.push(7);
-    // s1.pop();
+    s1.pop();
     s1.push(2);
     s1.push(1);
     s1.push(11);
-    // s1.pop();
+    s1.pop();
     s1.push(12);
     s1.push(17);
-    // s1.pop();
+    s1.pop();
     s1.push(19);
+    return 0;
 }
-
-/*
-
-}
-
-
-*/
