@@ -55,15 +55,10 @@ public:
         if (isFullQueue() == 1)
         {
             this->rear = (this->rear + 1) % capacity;
-
             arr[this->rear] = element;
             cout << "\nAdding element " << element << endl;
-            cout << "Queue is " << endl;
+            displayQueue();
 
-            for (int i = 0; i < this->capacity; i++)
-            {
-                cout << arr[i] << " ";
-            }
             waitingInQueue++;
         }
     }
@@ -75,16 +70,36 @@ public:
         {
             int ElementPopped = arr[this->front];
             arr[front] = 0;
-            this->front = (this->front + 1) % capacity;
-
             cout << "\nPopped Element " << ElementPopped << " and in that popped palce , value is set to 0 " << endl;
-            cout << "Queue is " << endl;
+            displayQueue();
 
+            this->front = (this->front + 1) % capacity;
+            waitingInQueue--;
+        }
+    }
+
+    // Displaying Queue
+    void displayQueue()
+    {
+        cout << "Queue is " << endl;
+
+        // Condition valid if rear come back to first palce
+        if (rear >= front)
+        {
+            cout << " For element pushing first timne and at time when Popping first element  " << endl;
+
+            for (int i = front; i <= rear; i++)
+            {
+                cout << arr[i] << " ";
+            }
+        }
+        else
+        {
+            cout << " For element Popped and again pushing " << endl;
             for (int i = 0; i < this->capacity; i++)
             {
                 cout << arr[i] << " ";
             }
-            waitingInQueue--;
         }
     }
 };
@@ -95,10 +110,11 @@ int main()
     Q1.enQueue(6);
     Q1.enQueue(9);
     Q1.enQueue(2);
+    Q1.deQueue();
+
     Q1.enQueue(8);
     Q1.enQueue(1);
     Q1.deQueue();
-
     Q1.enQueue(100);
     Q1.deQueue();
     Q1.enQueue(99);
