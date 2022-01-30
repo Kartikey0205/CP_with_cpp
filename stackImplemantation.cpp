@@ -6,17 +6,17 @@
 using namespace std;
 class MyStack
 {
-public:
+private:
     int i;
     int top;
     int capacity;
-    int arr[]; // flexible member should be last always
-
+    int arr[]; // flexible member should be last always and only one flexible member can be declared
+public:
     MyStack(int size)
     {
         int arr[size];
         top = -1;
-        capacity = size;
+        this->capacity = size;
     }
 
     void push(int element)
