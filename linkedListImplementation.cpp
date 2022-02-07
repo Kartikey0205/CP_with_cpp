@@ -70,6 +70,65 @@ void printLinkedList(Node *node)
         node = node->next;
     }
 }
+
+//  Deleting a node of linked list
+void deleteElementInLinkedList(Node **head_ref, int element)
+{
+    Node *temp = (*head_ref); // temp store the actual where head is pointing
+    Node *prev;               // just making a prev  of Node type so that it can hold previous Node
+
+    // Case 1 ->>   if element which has to be deleted is very first Element
+    if ((temp != NULL) && (temp->data == element))
+    {
+        *head_ref = temp->next;
+        free(temp);
+        return;
+    }
+
+    // Case 2 ->>   Element has to be deleted is head itself means no linked list exists
+
+    if (temp == NULL)
+    {
+        cout << "No value in Linked list" << endl;
+        return;
+    }
+
+    // Case 3 ->>   Element is somewhere in between linked list and we want to delete that particular element
+    while ((temp != NULL) && (temp->data != element))
+    {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    // // case 4 ->>  last node to be deleted
+    // while ((temp->next != NULL))
+    // {
+    //     prev = temp;
+    //     temp = temp->next;
+    //     if (temp == NULL)
+    //     {
+    //         free(temp);
+    //         prev->next = NULL;
+    //     }
+    // }
+    prev->next = temp->next;
+    free(temp);
+}
+
+// DELETEING LINKED LIST COMPLETELY
+void deleteLinkedListCompletely(Node **head_ref)
+{
+    Node *current = *head_ref;
+    Node *next;
+    while (current != NULL)
+    {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+    *head_ref = NULL;
+    cout << "All nodes are deleted succesfully" << endl;
+}
 int main()
 {
     Node *head = NULL;
@@ -79,10 +138,13 @@ int main()
     while (true)
     {
         cout << "\nEnter the respective number what operation you want " << endl;
-        cout << "\nPress 1 for Inserting at Begin " << endl
-             << "Press 2 for Inserting at Mid " << endl
-             << "Press 3 for Inserting at Last " << endl
-             << "Press 0 for Exit " << endl;
+        cout << "\nEnter 1 for Inserting at Begin " << endl
+             << "Enter 2 for Inserting at Mid " << endl
+             << "Enter 3 for Inserting at Last " << endl
+             << "Enter 4 for Deleting a particular node " << endl
+             << "Enter 5 for Deleting whole linked list " << endl
+
+             << "Enter 0 for Exit " << endl;
         cin >> number;
 
         cout << endl;
@@ -97,6 +159,9 @@ int main()
             switch (number)
 
             {
+            case 0:
+                exit;
+                break;
             case 1:
                 cout << " Enter the value you want to insert " << endl;
                 cin >> value;
@@ -121,8 +186,19 @@ int main()
                 printLinkedList(head);
 
                 break;
-            case 0:
-                exit;
+            case 4:
+                cout << " Enter the data you want to delete" << endl;
+                cin >> value;
+
+                deleteElementInLinkedList(&head, value);
+                printLinkedList(head);
+
+                break;
+
+            case 5:
+                deleteLinkedListCompletely(&head);
+                printLinkedList(head);
+
                 break;
             default:
                 cout << "Please enter valid number " << endl;
