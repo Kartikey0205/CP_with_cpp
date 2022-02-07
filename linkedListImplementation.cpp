@@ -100,7 +100,7 @@ void deleteElementInLinkedList(Node **head_ref, int element)
         temp = temp->next;
     }
 
-    // // case 4 ->>  last node to be deleted
+    // // case 4 ->>  last node to be deleted (If this code gonna execute then its creating problem in deleteing element from middle)
     // while ((temp->next != NULL))
     // {
     //     prev = temp;
