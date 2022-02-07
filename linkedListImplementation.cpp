@@ -100,7 +100,7 @@ void deleteElementInLinkedList(Node **head_ref, int element)
         temp = temp->next;
     }
 
-    // // case 4 ->>  last node to be deleted
+    // // case 4 ->>  last node to be deleted (If this code gonna execute then its creating problem in deleteing element from middle)
     // while ((temp->next != NULL))
     // {
     //     prev = temp;
@@ -206,13 +206,6 @@ int main()
             }
         }
     }
-    // insertAtBegin(8, &head);
-    //  switch case if 1 to ist method  2 toh insertMid 3rd then append and if 2 is press then for loop
-    // cout << " Enter the index value after which you want to insert " << endl;
-    // insertAtMiddleSomewhere(head, 6);
-    // insertAtMiddleSomewhere(head, 90);
 
-    // appendInsertingAtEnd(&head, 9);
-    // printLinkedList(head);
     return 0;
 }
