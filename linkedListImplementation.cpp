@@ -206,13 +206,6 @@ int main()
             }
         }
     }
-    // insertAtBegin(8, &head);
-    //  switch case if 1 to ist method  2 toh insertMid 3rd then append and if 2 is press then for loop
-    // cout << " Enter the index value after which you want to insert " << endl;
-    // insertAtMiddleSomewhere(head, 6);
-    // insertAtMiddleSomewhere(head, 90);
 
-    // appendInsertingAtEnd(&head, 9);
-    // printLinkedList(head);
     return 0;
 }
