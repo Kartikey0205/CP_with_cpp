@@ -129,6 +129,21 @@ void deleteLinkedListCompletely(Node **head_ref)
     *head_ref = NULL;
     cout << "All nodes are deleted succesfully" << endl;
 }
+
+// COUNTING ALL NODES
+int getNodeCount(Node *head)
+{
+    Node *current = head;
+    int count = 0;
+
+    while (current != NULL)
+    {
+        count++;
+        current = current->next;
+    }
+
+    return count;
+}
 int main()
 {
     Node *head = NULL;
@@ -143,6 +158,7 @@ int main()
              << "Enter 3 for Inserting at Last " << endl
              << "Enter 4 for Deleting a particular node " << endl
              << "Enter 5 for Deleting whole linked list " << endl
+             << "Enter 6 for Counting total NODE in a linked list " << endl
 
              << "Enter 0 for Exit " << endl;
         cin >> number;
@@ -198,6 +214,11 @@ int main()
             case 5:
                 deleteLinkedListCompletely(&head);
                 printLinkedList(head);
+
+                break;
+            case 6:
+                printLinkedList(head);
+                cout << "\nTotal NODE in a Linked List will be " << getNodeCount(head);
 
                 break;
             default:
