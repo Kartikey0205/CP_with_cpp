@@ -144,11 +144,37 @@ int getNodeCount(Node *head)
 
     return count;
 }
+
+// Reversing the Linked List
+Node *getReverseLinkedList(Node *head_ref)
+{
+    // STEP 1- Initialization
+    Node *current = head_ref;
+    Node *prev = NULL;
+    Node *next = NULL;
+
+    while (current != NULL)
+    {
+
+        // STEP 2 - Value Updating
+        next = current->next;
+        current->next = prev;
+
+        // STEP 3 - Again assigning value back
+        prev = current;
+        current = next;
+    }
+
+    //  Head Update to prev
+    head_ref = prev;
+    return head_ref;
+}
 int main()
 {
     Node *head = NULL;
-
-    int number, value, index;
+    Node *reverseList;
+    int number,
+        value, index;
 
     while (true)
     {
@@ -159,7 +185,7 @@ int main()
              << "Enter 4 for Deleting a particular node " << endl
              << "Enter 5 for Deleting whole linked list " << endl
              << "Enter 6 for Counting total NODE in a linked list " << endl
-
+             << "Enter 7 for Reversing a linked list " << endl
              << "Enter 0 for Exit " << endl;
         cin >> number;
 
@@ -219,6 +245,16 @@ int main()
             case 6:
                 printLinkedList(head);
                 cout << "\nTotal NODE in a Linked List will be " << getNodeCount(head);
+
+                break;
+            case 7:
+
+                cout << "\nPreviously Linked List will be" << endl;
+                printLinkedList(head);
+
+                cout << "\n Linked List after Reverse will be " << endl;
+                reverseList = getReverseLinkedList(head);
+                printLinkedList(reverseList);
 
                 break;
             default:
