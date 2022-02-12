@@ -255,6 +255,7 @@ int main()
                 cout << "\n Linked List after Reverse will be " << endl;
                 reverseList = getReverseLinkedList(head);
                 printLinkedList(reverseList);
+                head = reverseList;
 
                 break;
             default:
