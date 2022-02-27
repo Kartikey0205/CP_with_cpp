@@ -94,8 +94,26 @@ void deleteNode(int element, Node **head_ref)
     //  Case 5 : Node not found
     else
     {
-        cout << "Node not Found";
+        cout << "Node not Found\n";
     }
+}
+
+//  Count All Nodes
+void countNode(Node *head_ref)
+{
+    int count = 0;
+    Node *current = head_ref;
+    if (head_ref == NULL)
+    {
+        cout << "Total number of Nodes will be 0 " << endl;
+    }
+    do
+    {
+        count++;
+        current = current->next;
+    } while (current != head_ref);
+
+    cout << "Total number of Nodes will be " << count << endl;
 }
 
 int main()
@@ -110,6 +128,7 @@ int main()
         cout << "\nEnter the respective number what operation you want " << endl;
         cout << "\nEnter 1 for Inserting an Element at begining in a Circular Linked List " << endl
              << "Enter 2 for Deleting a node " << endl
+             << "Enter 3 for Counting a node " << endl
              << "Enter 0 for Exit " << endl;
         cin >> number;
 
@@ -140,6 +159,10 @@ int main()
                 cin >> value;
                 deleteNode(value, &head);
                 printCircularList(head);
+
+                break;
+            case 3:
+                countNode(head);
 
                 break;
             default:
