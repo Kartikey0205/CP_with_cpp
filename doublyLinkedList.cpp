@@ -12,7 +12,7 @@ public:
 // Inserting at Middle
 // Inserting at End
 // Deleting
-//  Printing
+// Printing
 
 /*  Pushing element in very first--
         1- Head is Null
@@ -102,19 +102,50 @@ void printDoublyLinkedList(Node *head_ref)
         head_ref = head_ref->next;
     }
 }
+void deleteNode(Node **head_ref, Node *key)
+{
+    cout << endl;
+    // Checking whether key or head is not NULL
+    if (head_ref == NULL || key == NULL)
+    {
+        cout << "Since either head_ref or key is NULL so we can't proceed further" << endl;
+        return;
+    }
+
+    // CASE 1 - If Head Node is to be deleted
+    if (*head_ref == key)
+    {
+        *head_ref = key->next;
+    }
+
+    // CASE 2 - If Middle Node is Node to be deleted
+    if (key->next != NULL)
+    {
+        key->next->prev = key->prev;
+    }
+
+    // CASE 3 - If Last Node is to be deleted
+    if (key->prev != NULL)
+    {
+        key->prev->next = key->next;
+    }
+
+    free(key);
+    return;
+}
 int main()
 {
 
     Node *head = NULL;
     int number,
         value, index;
-
     while (true)
     {
         cout << "\nEnter the respective number what operation you want " << endl;
         cout << "\nEnter 1 for Inserting at Begin " << endl
              << "Enter 2 for Inserting at Mid " << endl
              << "Enter 3 for Inserting at Last " << endl
+             << "Enter 4 for Deleting the node " << endl
              << "Enter 0 for Exit " << endl;
         cin >> number;
 
@@ -157,7 +188,12 @@ int main()
                 printDoublyLinkedList(head);
 
                 break;
+            case 4:
 
+                deleteNode(&head, head->next);
+                printDoublyLinkedList(head);
+
+                break;
             default:
                 cout << "Please enter valid number " << endl;
                 break;
