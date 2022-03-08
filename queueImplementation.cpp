@@ -9,11 +9,13 @@ private:
     int capacity;
     int waitingInQueue;
     int arr[]; // flexible member should be last always and only one flexible member can be declared
+    // int *arr;
 
 public:
     queueImplementation(int size)
     {
         int arr[size];
+        // arr = new int[size];
         this->front = 0;
         this->rear = -1;
         this->capacity = size;
