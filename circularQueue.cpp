@@ -39,7 +39,7 @@ void circularQueue ::enQueue(int data)
     // FULL Queue
     if (((front == 0) && (rear == size - 1)) || (rear == (front - 1) % (size - 1)))
     {
-        cout << "Queue is full" << endl;
+        cout << "Queue is full so can't add " << data << endl;
 
         return;
     }
@@ -74,6 +74,7 @@ int circularQueue ::deQueue()
     }
     int data = arr[front];
     arr[front] = -1;
+    cout << "Data deleted is " << data << endl;
     // only one element is there in Queue
     if (front == rear)
     {
@@ -84,7 +85,7 @@ int circularQueue ::deQueue()
     {
         front = 0;
     }
-    else // alll other cases
+    else // all other cases
     {
         front++;
     }
@@ -93,14 +94,37 @@ int circularQueue ::deQueue()
 
 void circularQueue::printCircularQueue()
 {
-    cout << "\nCircular Queue is" << endl;
-    for (int i = 0; i < size; i++)
+    cout << "\nCircular Queue is - ";
+    if (front == -1)
     {
-        if (arr[i] > 10000)
+        cout << " Empty" << endl;
+        return;
+    }
+
+    if (rear >= front)
+    {
+
+        // when queue is moving ahead  in its first direction
+        for (int i = front; i <= rear; i++)
         {
-            arr[i] = 0;
+            cout << arr[i] << " ";
         }
-        cout << arr[i] << " ";
+    }
+    else
+    {
+        // backward queue means when queue is completed its one round and started second onwards round
+
+        // printing old value first
+        for (int i = front; i < size; i++)
+        {
+            cout << arr[i] << " ";
+        }
+
+        // printing new upcoming value
+        for (int i = 0; i <= rear; i++)
+        {
+            cout << arr[i] << " ";
+        }
     }
     cout << endl;
 }
@@ -141,7 +165,7 @@ int main()
 
                 break;
             case 2:
-                cout << "\nData deleted is " << myQueue.deQueue() << endl;
+                myQueue.deQueue();
 
                 break;
             case 3:
