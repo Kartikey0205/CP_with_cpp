@@ -62,6 +62,7 @@ Node *deleteNode(Node *root, int data)
     // root is empty
     if (root == NULL)
     {
+        cout << "Tree is Empty" << endl;
         return root;
     }
     // checking at which side will data go
@@ -97,6 +98,18 @@ Node *deleteNode(Node *root, int data)
     }
     return root;
 }
+
+// inOrder
+void inOrder(Node *node)
+{
+    if (node != NULL)
+    {
+        inOrder(node->left);
+        cout << node->key << " ";
+        inOrder(node->right);
+    }
+}
+
 int main()
 {
     int number, value;
@@ -137,9 +150,21 @@ int main()
                 root = insert(root, value);
                 break;
             case 2:
-                cout << " Enter the data you want to data " << endl;
+                cout << " Enter the data you want to delete " << endl;
                 cin >> value;
                 root = deleteNode(root, value);
+                break;
+            case 3:
+                if (root == NULL)
+                {
+                    cout << " Tree is Empty " << endl;
+                }
+                else
+                {
+
+                    cout << " In order Traversal is " << endl;
+                    inOrder(root);
+                }
                 break;
 
             default:
