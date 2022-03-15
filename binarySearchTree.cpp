@@ -109,6 +109,26 @@ void inOrder(Node *node)
         inOrder(node->right);
     }
 }
+// preOrder
+void preOrder(Node *node)
+{
+    if (node != NULL)
+    {
+        cout << node->key << " ";
+        preOrder(node->left);
+        preOrder(node->right);
+    }
+}
+// postOrder
+void postOrder(Node *node)
+{
+    if (node != NULL)
+    {
+        postOrder(node->left);
+        postOrder(node->right);
+        cout << node->key << " ";
+    }
+}
 
 int main()
 {
@@ -150,9 +170,17 @@ int main()
                 root = insert(root, value);
                 break;
             case 2:
-                cout << " Enter the data you want to delete " << endl;
-                cin >> value;
-                root = deleteNode(root, value);
+                if (root == NULL)
+                {
+                    cout << " Tree is Empty " << endl;
+                }
+                else
+                {
+
+                    cout << " Enter the data you want to delete " << endl;
+                    cin >> value;
+                    root = deleteNode(root, value);
+                }
                 break;
             case 3:
                 if (root == NULL)
@@ -164,6 +192,30 @@ int main()
 
                     cout << " In order Traversal is " << endl;
                     inOrder(root);
+                }
+                break;
+            case 4:
+                if (root == NULL)
+                {
+                    cout << " Tree is Empty " << endl;
+                }
+                else
+                {
+
+                    cout << " Pre order Traversal is " << endl;
+                    preOrder(root);
+                }
+                break;
+            case 5:
+                if (root == NULL)
+                {
+                    cout << " Tree is Empty " << endl;
+                }
+                else
+                {
+
+                    cout << " Post order Traversal is " << endl;
+                    postOrder(root);
                 }
                 break;
 
