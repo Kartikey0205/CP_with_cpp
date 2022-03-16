@@ -130,6 +130,30 @@ void postOrder(Node *node)
     }
 }
 
+// Left View
+void leftView(Node *node)
+{
+    if (node != NULL)
+    {
+        cout << node->key << " ";
+        leftView(node->left);
+    }
+}
+
+// Left Child
+void leftChild(Node *node)
+{
+    if (node != NULL)
+    {
+        if (node->left != NULL)
+        {
+
+            cout << node->left->key << " ";
+        }
+        leftChild(node->left);
+        leftChild(node->right);
+    }
+}
 int main()
 {
     int number, value;
@@ -218,6 +242,30 @@ int main()
                     postOrder(root);
                 }
                 break;
+            case 6:
+                if (root == NULL)
+                {
+                    cout << " Tree is Empty " << endl;
+                }
+                else
+                {
+
+                    cout << " Left View of Tree is " << endl;
+                    leftView(root);
+                }
+                break;
+            case 7:
+                if (root == NULL)
+                {
+                    cout << " Tree is Empty " << endl;
+                }
+                else
+                {
+
+                    cout << "Left Child is " << endl;
+                    leftChild(root);
+                }
+                break;
 
             default:
                 cout << "Please enter valid number " << endl;
@@ -227,3 +275,17 @@ int main()
     }
     return 0;
 }
+
+// TREE IS
+
+/*
+
+
+
+                                                                100
+                                              85                                     120
+                                        70          90                      111              180
+                                45              87                      108               130
+                          32
+
+*/
