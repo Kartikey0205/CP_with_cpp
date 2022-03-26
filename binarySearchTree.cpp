@@ -154,6 +154,28 @@ void leftChild(Node *node)
         leftChild(node->right);
     }
 }
+
+// swap method
+void swap(Node *n)
+{
+    Node *temp = n->left;
+    n->left = n->right;
+    n->right = temp;
+}
+
+// Printing mirror view only of tree
+void mirrorViewTree(Node *node)
+{
+    Node *orginalNode = node;
+    if (orginalNode != NULL)
+    {
+        swap(orginalNode);
+
+        mirrorViewTree(orginalNode->left);
+        cout << orginalNode->key << " ";
+        mirrorViewTree(orginalNode->right);
+    }
+}
 int main()
 {
     int number, value;
@@ -265,6 +287,21 @@ int main()
                     cout << "Left Child is " << endl;
                     leftChild(root);
                 }
+                break;
+            case 8:
+                if (root == NULL)
+                {
+                    cout << " Tree is Empty " << endl;
+                }
+                else
+                {
+
+                    cout << "Mirror View is " << endl;
+                    Node *mirrorTree = root;
+                    mirrorViewTree(root);
+                    root = mirrorTree;
+                }
+
                 break;
 
             default:
