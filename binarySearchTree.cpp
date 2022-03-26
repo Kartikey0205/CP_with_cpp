@@ -176,6 +176,37 @@ void mirrorViewTree(Node *node)
         mirrorViewTree(orginalNode->right);
     }
 }
+
+// Left side
+void leftSideValue(Node *n)
+{
+    if (n != NULL)
+    {
+        leftSideValue(n->left);
+        cout << n->key << " ";
+    }
+}
+
+// Right side
+void rightSideValue(Node *n)
+{
+    if (n != NULL)
+    {
+        rightSideValue(n->left);
+        cout << n->key << " ";
+    }
+}
+// top view
+void topViewTree(Node *node)
+{
+    if (node != NULL)
+    {
+
+        leftSideValue(node->left);
+        cout << node->key << " ";
+        rightSideValue(node->right);
+    }
+}
 int main()
 {
     int number, value;
@@ -303,7 +334,18 @@ int main()
                 }
 
                 break;
+            case 9:
+                if (root == NULL)
+                {
+                    cout << " Tree is Empty " << endl;
+                }
+                else
+                {
+                    cout << "Top View is " << endl;
+                    topViewTree(root);
+                }
 
+                break;
             default:
                 cout << "Please enter valid number " << endl;
                 break;
