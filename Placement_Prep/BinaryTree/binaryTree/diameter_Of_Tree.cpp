@@ -1,4 +1,4 @@
-// O(N)
+// O(N2)
 
 #include <iostream>
 using namespace std;
