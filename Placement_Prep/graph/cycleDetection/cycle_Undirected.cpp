@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define vi vector<int>
+#define pii pair<int, int>
+#define vii vector<pii>
+#define vvi vector<vi>
+
+bool isCycle(int node, vvi &adjList, vector<bool> &visited, int parentNode)
+{
+    // make current node to visited
+    visited[node] = true;
+
+    // iterating to all coonected node from current Node
+    for (auto i : adjList[node])
+        // if node iterated is parent that means cycle is there so
+        if (i != parentNode)
+        {
+            // check iterated node is visted then cycle is present
+            if (visited[i])
+                return true;
+            // if not visited than then check that node is cycle or not
+            if (!visited[i] and isCycle(i, adjList, visited, node))
+                return true;
+        }
+
+    return false;
+}
+
+int main()
+{
+    int nodes, edges;
+    cout << "Enter number of Nodes : ";
+    cin >> nodes;
+    cout << endl;
+    cout << "Enter number of edges : ";
+    cin >> edges;
+    cout << "undirected graph";
+    cout << endl;
+    // first one is for index second contains matrix at that index
+    vvi adjancyList(nodes);
+    for (int i = 0; i < edges; i++)
+    {
+        int node1, node2;
+        cout << "Enter the node between which edge is connected : ";
+        cin >> node1 >> node2;
+
+        adjancyList[node1].push_back(node2);
+        adjancyList[node2].push_back(node1);
+    }
+
+    bool cycle = false;
+    vector<bool> visited(nodes, 0);
+
+    for (int i = 0; i < nodes; i++)
+    {
+        if (!visited[i] and isCycle(i, adjancyList, visited, -1))
+        {
+            cycle = true;
+        }
+    }
+
+    if (cycle)
+        cout << "Cycle is Present";
+    else
+        cout << "Cycle is not Present";
+
+    return 0;
+}
+
+/*
+Nodes = 4 edges = 3
+0-----1
+1-----2
+2-----0
+
+
+Nodes = 4 edges = 2
+0-----1
+1-----2
+*/
